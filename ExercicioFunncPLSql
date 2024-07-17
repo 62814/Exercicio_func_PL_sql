@@ -1,0 +1,11 @@
+CREATE OR REPLACE FUNCTION calcular_total_vendas(data_inicio DATE, data_fim DATE) RETURNS DECIMAL AS $$
+DECLARE
+    total DECIMAL;
+BEGIN
+    SELECT SUM(valor_total) INTO total
+    FROM vendas
+    WHERE data_venda BETWEEN data_inicio AND data_fim;
+
+    RETURN total;
+END;
+$$ LANGUAGE plpgsql;
